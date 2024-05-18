@@ -15,7 +15,7 @@ namespace NewsletterProvider.Functions
         private readonly DataContext _context = context;
 
         [Function("Subscribe")]
-        public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "post", Route = "subscribe")] HttpRequest req)
+        public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "post")] HttpRequest req)
         {
             var body = await new StreamReader(req.Body).ReadToEndAsync();   
             if (!string.IsNullOrEmpty(body))
