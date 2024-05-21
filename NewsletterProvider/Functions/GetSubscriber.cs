@@ -19,7 +19,7 @@ public class GetSubscriber
     }
 
     [Function("GetSubscriber")]
-    public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "get", Route = "getsubscriber")] HttpRequest req, string email)
+    public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "post", Route = "getsubscriber")] HttpRequest req, string email)
     {
         try
         {
