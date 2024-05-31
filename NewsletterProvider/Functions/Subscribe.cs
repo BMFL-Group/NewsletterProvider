@@ -33,9 +33,16 @@ namespace NewsletterProvider.Functions
                             return new OkObjectResult(new { Status = 200, Message = "Subscriber was updated. " });
                         }
 
-                        _context.Subscribers.Add(subscribeEntity);
-                        await _context.SaveChangesAsync();
-                        return new OkObjectResult(new { Status = 200, Message = "Subscriber is now subscribed. " });
+                        try
+                        {
+                            _context.Subscribers.Add(subscribeEntity);
+                            var result = await _context.SaveChangesAsync();
+                            if (result == 1)
+                            {
+                                return new OkObjectResult(new { Status = 200, Message = "Subscriber is now subscribed. " });
+                            }
+                        }
+                        catch (Exception ex){}
                     }
                 }
 
